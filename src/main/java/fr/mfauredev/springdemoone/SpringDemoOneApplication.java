@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import com.github.javafaker.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -20,10 +22,19 @@ public class SpringDemoOneApplication {
     @Bean
     CommandLineRunner runner (CustomerRepository customerRepository){
         return args -> {
-            Customer alex = new Customer("Alec","mail@mail",21);
-            Customer jamila = new Customer("Jamila","mail2@mail",24);
 
-            List<Customer> customers = List.of(alex, jamila);
+            Faker faker = new Faker();
+            Customer customer;
+            List<Customer> customers = new ArrayList<>();
+            for(int i=0; i<100; ++i){
+                String email = faker.internet().emailAddress();
+                String name = faker.name().fullName();
+                Integer age = faker.number().numberBetween(12,99);
+                customer = new Customer(name,email,age);
+
+                customers.add(customer);
+            }
+
             customerRepository.saveAll(customers);
         };
      }
