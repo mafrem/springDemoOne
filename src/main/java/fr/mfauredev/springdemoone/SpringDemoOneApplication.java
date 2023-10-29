@@ -26,7 +26,7 @@ public class SpringDemoOneApplication {
             Faker faker = new Faker();
             Customer customer;
             List<Customer> customers = new ArrayList<>();
-            for(int i=0; i<100; ++i){
+            for(int i=0; i<1; ++i){
                 String email = faker.internet().emailAddress();
                 String name = faker.name().fullName();
                 Integer age = faker.number().numberBetween(12,99);

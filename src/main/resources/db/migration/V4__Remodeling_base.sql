@@ -1,3 +1,4 @@
+Drop TABLE customer;
 CREATE TABLE customer (
     id BIGSERIAL PRIMARY KEY,
     name TEXT not NULL,

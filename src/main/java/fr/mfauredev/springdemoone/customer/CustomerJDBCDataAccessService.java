@@ -1,9 +1,18 @@
 package fr.mfauredev.springdemoone.customer;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.util.List;
 import java.util.Optional;
 
 public class CustomerJDBCDataAccessService implements CustomerDao {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public CustomerJDBCDataAccessService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
     public List<Customer> selectAllCustomers() {
         return null;
@@ -25,12 +34,17 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     }
 
     @Override
-    public void deleteCustomer(Integer id) {
+    public boolean existsPersonWithId(Integer id) {
+        return false;
+    }
+
+    @Override
+    public void deleteCustomerById(Integer id) {
 
     }
 
     @Override
-    public void updateCustomer(Integer id) {
+    public void updateCustomer(Customer customer) {
 
     }
 }

@@ -38,12 +38,17 @@ public class CustomerJpaDataAccessService implements CustomerDao{
     }
 
     @Override
-    public void deleteCustomer(Integer id) {
-
+    public boolean existsPersonWithId(Integer id) {
+        return customerRepository.existsCustomerById(id);
     }
 
     @Override
-    public void updateCustomer(Integer id) {
+    public void deleteCustomerById(Integer id) {
+        customerRepository.deleteById(id);
+    }
 
+    @Override
+    public void updateCustomer(Customer customer) {
+        customerRepository.save(customer);
     }
 }
