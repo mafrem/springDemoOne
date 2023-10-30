@@ -1,6 +1,5 @@
 package fr.mfauredev.springdemoone.customer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,4 +33,10 @@ public class CustomerController
     public void registerCustomer(@RequestBody CustomerRegistrationRequest request){
         customerService.addCustomer(request);
     }
+
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") Integer id){
+        customerService.deleteCustomerById(id);
+    }
+
 }

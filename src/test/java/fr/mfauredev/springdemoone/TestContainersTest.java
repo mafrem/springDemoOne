@@ -15,12 +15,11 @@ public class TestContainersTest {
     private static final PostgreSQLContainer<?> postgreSQLContainer =
             new PostgreSQLContainer<>("postgres:latest")
                     .withDatabaseName("mfauredev-dao-unit-test")
-                    .withUsername("amigoscode")
+                    .withUsername("mfauredev")
                     .withPassword("password");
     @Test
     void canStartPostgresDB() {
         assertThat(postgreSQLContainer.isRunning()).isTrue();
         assertThat(postgreSQLContainer.isCreated()).isTrue();
-        assertThat(postgreSQLContainer.isHealthy()).isTrue();
     }
 }

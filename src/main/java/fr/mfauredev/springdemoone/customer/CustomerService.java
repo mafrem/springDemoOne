@@ -5,14 +5,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerService
 {
     private final CustomerDao customerDao;
 
-    public  CustomerService(@Qualifier("jpa") CustomerDao customerDao){
+    public  CustomerService(@Qualifier("jdbc") CustomerDao customerDao){
         this.customerDao = customerDao;
     }
 
@@ -34,5 +33,11 @@ public class CustomerService
         }
         Customer newOne = new Customer(c.name(), c.email(), c.age());
         customerDao.insertCustomer(newOne);
+    }
+
+    public void deleteCustomerById(Integer id){
+        if(customerDao.existsPersonWithId(id)){
+            customerDao.deleteCustomerById(id);
+        }
     }
 }
