@@ -1,6 +1,7 @@
 package fr.mfauredev.springdemoone.customer;
 
 import fr.mfauredev.springdemoone.exceptions.DuplicateResourceException;
+import fr.mfauredev.springdemoone.exceptions.RequestValidationException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,34 @@ public class CustomerService
         if(customerDao.existsPersonWithId(id)){
             customerDao.deleteCustomerById(id);
         }
+    }
+
+    public void updateCustomer(Integer customerId, CustomerUpdateRequest updateRequest){
+        Customer customer = getCustomerById(customerId);
+
+        boolean changes = false;
+
+        if(updateRequest.name()!=null && !updateRequest.name().equals(customer.getName())){
+            customer.setName(updateRequest.name());
+            changes = true;
+        }
+        if(updateRequest.email()!=null && !updateRequest.email().equals(customer.getEmail())){
+            if(customerDao.existsPersonWithEmail(updateRequest.email())){
+                throw new DuplicateResourceException(
+                        "Email (this one :  [%s] ) guy already there sry".formatted(updateRequest.email()));
+            }
+            customer.setEmail(updateRequest.email());
+            changes = true;
+        }
+        if(updateRequest.age()!=null && !updateRequest.age().equals(customer.getAge())){
+            customer.setAge(updateRequest.age());
+            changes = true;
+        }
+
+        if(!changes){
+            throw  new RequestValidationException("Aucun user modifié");
+        }
+        customerDao.updateCustomer(customer);
+
     }
 }
