@@ -122,9 +122,54 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
     @Test
     void deleteCustomerById() {
+        String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+        Customer c = new Customer(
+                FAKER.name().fullName(),
+                email,
+                20
+        );
+        underTest.insertCustomer(c);
+
+        int id = underTest.selectAllCustomers().stream()
+                .filter(customer1 -> customer1.getEmail().equals(email))
+                .mapToInt(customer2 -> customer2.getId())
+                .findFirst()
+                .orElseThrow();
+
+        underTest.deleteCustomerById(id);
+
+        assertThat(underTest.selectCustomerById(id).isEmpty());
+
+
     }
 
     @Test
     void updateCustomer() {
+        String email = "lemail";
+        Customer c = new Customer(
+                "Mimichel",
+                email,
+                20
+        );
+        underTest.insertCustomer(c);
+
+        int id = underTest.selectAllCustomers().stream()
+                .filter(customer1 -> customer1.getEmail().equals(email))
+                .mapToInt(customer2 -> customer2.getId())
+                .findFirst()
+                .orElseThrow();
+
+        c = new Customer(
+                "Jambon",
+                "lemail2",
+                28
+        );
+        underTest.updateCustomer(c);
+
+        Customer actual = underTest.selectCustomerById(id).get();
+
+        assertThat(actual.getName().equals("Jambon"));
+        assertThat(actual.getEmail().equals("lemail2"));
+        assertThat(actual.getAge() == 28);
     }
 }

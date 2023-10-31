@@ -87,7 +87,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
                     WHERE ID = ?
                 """;
         int result = jdbcTemplate.update(sql,
-                customer.getName(),customer.getEmail(),customer.getAge());
+                customer.getName(),customer.getEmail(),customer.getAge(),customer.getId());
         System.out.println("Result of UPDATE : [%s]".formatted(result));
     }
 }
