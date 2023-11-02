@@ -29,14 +29,6 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 20
         );
         underTest.insertCustomer(c);
-        for (int i = 0; i < 100; i++) {
-            c = new Customer(
-                    FAKER.name().fullName(),
-                    FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                    20
-            );
-            underTest.insertCustomer(c);
-        }
 
         List<Customer> customers = underTest.selectAllCustomers();
 

@@ -1,6 +1,7 @@
 package fr.mfauredev.springdemoone.customer;
 
 import fr.mfauredev.springdemoone.exceptions.DuplicateResourceException;
+import fr.mfauredev.springdemoone.exceptions.MissingResourceException;
 import fr.mfauredev.springdemoone.exceptions.RequestValidationException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class CustomerService
         return  customerDao
                 .selectCustomerById(id)
                 .orElseThrow(
-                        () -> new IllegalArgumentException("Bouh [%s]".formatted(id))
+                        () -> new MissingResourceException("Bouh [%s]".formatted(id))
                 );
     }
 

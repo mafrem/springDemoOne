@@ -2,6 +2,7 @@ package fr.mfauredev.springdemoone.customer;
 
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -24,15 +25,19 @@ public class Customer {
             name = "customer_id_seq", sequenceName = "customer_id_seq",allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_seq")
+    @JsonProperty("id")
     private Integer id;
 
+    @JsonProperty("name")
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false, unique = true)
+    @JsonProperty("email")
     private String email;
 
     @Column(nullable = false)
+    @JsonProperty("age")
     private Integer age;
 
     public Customer(Integer id, String name, String email, Integer age) {
