@@ -1,7 +1,6 @@
 package fr.mfauredev.springdemoone.journey;
 
 import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
 import fr.mfauredev.springdemoone.customer.Customer;
 import fr.mfauredev.springdemoone.customer.CustomerRegistrationRequest;
 import fr.mfauredev.springdemoone.customer.CustomerUpdateRequest;
@@ -14,14 +13,13 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class CustomerServiceTest {
+public class CustomerIntegrationTest {
 
     @Autowired
     WebTestClient webTestClient;
