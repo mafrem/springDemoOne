@@ -3,12 +3,14 @@
 *.sonarj
 *.sw*
 .DS_Store
+*/.DS_Store
 build.sh
 integration-repo
 ivy-cache
 argfile*
 activemq-data/
 classes/
+*/node_modules
 
 # Log files
 jxl.log
@@ -28,6 +30,7 @@ spring-test/test-output/
 
 # Maven artifacts
 /target/
+*/target/
 
 # Eclipse artifacts, including WTP generated manifests
 bin
@@ -42,6 +45,7 @@ spring-*/src/main/java/META-INF/MANIFEST.MF
 *.ipr
 *.iws
 .idea
+*/.idea/
 out
 test-output
 atlassian-ide-plugin.xml
