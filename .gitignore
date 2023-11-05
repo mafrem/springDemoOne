@@ -12,6 +12,8 @@ activemq-data/
 classes/
 */node_modules
 
+.jpb
+
 # Log files
 jxl.log
 jmx.log
