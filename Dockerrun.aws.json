@@ -1,6 +1,6 @@
 {
   "AWSEBDockerrunVersion": 2,
-  "volumes": [
+  "containerDefinitions": [
    {
       "name": "mfauredev_api",
       "image": "mfauredev/my-spring-boot-app:latest",
@@ -15,7 +15,7 @@
      "environment" : [
        {
          "name":"SPRING_DATASOURCE_URL",
-         "value": "jdbc:postgresql://TODO:5432/customer"
+         "value": "jdbc:postgresql://awseb-e-vatfgrapbm-stack-awsebrdsdatabase-7qmwj7flehzg.cum2vfw8r19m.eu-central-1.rds.amazonaws.com:5432/customer"
        }
      ]
     }
