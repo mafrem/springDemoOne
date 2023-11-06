@@ -36,4 +36,4 @@ jobs:
           java-version: '17'
           cache: 'maven'
       - name: Build and Run Unit Tests and ITs with Maven
-        run: mvn -ntp -bB verify
+        run: mvn -ntp -B verify
